@@ -125,7 +125,7 @@ class THttpClient(TTransportBase):
     self.__wbuf = BytesIO()
 
     # HTTP request
-    self.__http.putrequest('POST', self.path)
+    self.__http.putrequest('POST', self.path, skip_host=True)
 
     # Write headers
     self.__http.putheader('Host', self.host)
