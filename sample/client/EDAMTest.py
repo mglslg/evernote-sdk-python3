@@ -16,11 +16,15 @@ import os
 
 from evernote.api.client import EvernoteClient
 
+import ssl
+
+ssl._create_default_https_context = ssl._create_unverified_context
+
 # Real applications authenticate with Evernote using OAuth, but for the
 # purpose of exploring the API, you can get a developer token that allows
 # you to access your own Evernote account. To get a developer token, visit
 # https://sandbox.evernote.com/api/DeveloperToken.action
-auth_token = "your developer token"
+auth_token = "S=s25:U=1a56b7f:E=17646405917:C=1762233d170:P=1cd:A=en-devtoken:V=2:H=1cca0c7ee9aac7e1ff59bbab3b80104e"
 
 if auth_token == "your developer token":
     print("Please fill in your developer token")
@@ -36,10 +40,10 @@ if auth_token == "your developer token":
 # To access production (International) service, set both sandbox and china to False
 # To access production (China) service, set sandbox to False and china to True
 
-sandbox=True
-china=False
+sandbox = False
+china = True
 
-client = EvernoteClient(token=auth_token, sandbox=sandbox,china=china)
+client = EvernoteClient(token=auth_token, sandbox=sandbox, china=china)
 
 user_store = client.get_user_store()
 
